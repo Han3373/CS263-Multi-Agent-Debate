@@ -12,7 +12,7 @@ Usage:
     4. Run full experiment: python debate_pipeline_gemini.py --mode full
     5. Results saved to results/ directory
 
-Requirements: pip install google-genai datasets
+Requirements: pip install google-genai google-cloud-aiplatform datasets
 """
 
 import json
@@ -35,7 +35,7 @@ from google.genai import types
 
 @dataclass
 class Config:
-    # Models - Gemini free tier
+    # Models
     truth_model: str = "gemini-2.0-flash"
     gaslight_model: str = "gemini-2.0-flash"
     judge_model: str = "gemini-2.0-flash"
@@ -65,8 +65,8 @@ class Config:
     # Output
     output_dir: str = "results"
 
-    # Rate limiting (Gemini free: 15 RPM for flash)
-    api_delay: float = 4.5  # seconds between calls (~13 RPM, safe margin)
+    # Rate limiting (Vertex AI default: ~60 RPM for gemini-2.0-flash)
+    api_delay: float = 1.5  # seconds between calls (~40 RPM, safe margin)
 
 
 # ============================================================
@@ -864,7 +864,7 @@ if __name__ == "__main__":
         num_turns=2,
         mmlu_subjects=["math"],
         output_dir="results_test",
-        api_delay=4.5,
+        api_delay=1.5,
     )
 
     full_config = Config(
@@ -876,7 +876,7 @@ if __name__ == "__main__":
         num_turns=3,
         mmlu_subjects=["math", "health", "law", "psychology", "economics", "philosophy"],
         output_dir="results_full",
-        api_delay=4.5,
+        api_delay=1.5,
     )
 
     config = test_config if args.mode == "test" else full_config
