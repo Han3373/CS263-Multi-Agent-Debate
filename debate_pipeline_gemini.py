@@ -4,18 +4,15 @@ CS 263 - Adversarial Multi-Agent Debate Evaluation Pipeline (Gemini Version)
 Measures parametric robustness of LLM Judge agents under adversarial pressure.
 
 Usage:
-    1. Set your Gemini API key: export GEMINI_API_KEY="..."
-       (Get free key at: https://aistudio.google.com/apikey)
-    2. Run quick test:  python debate_pipeline_gemini.py --mode test
-    3. Run full experiment: python debate_pipeline_gemini.py --mode full
-    4. Results saved to results/ directory
+    1. Authenticate with GCP:
+         gcloud auth application-default login
+    2. Set your project: export GOOGLE_CLOUD_PROJECT="your-project-id"
+       (Optional) Set region: export GOOGLE_CLOUD_LOCATION="us-central1"
+    3. Run quick test:  python debate_pipeline_gemini.py --mode test
+    4. Run full experiment: python debate_pipeline_gemini.py --mode full
+    5. Results saved to results/ directory
 
 Requirements: pip install google-genai datasets
-
-Gemini Free Tier Limits (as of 2025):
-    - gemini-2.0-flash: 15 RPM, 1500 RPD (requests per day)
-    - gemini-2.5-flash: 10 RPM, 500 RPD
-    Tip: test config uses ~20 calls, full config uses ~800 calls (spread across 2 days or use paid tier)
 """
 
 import json
@@ -319,17 +316,18 @@ def format_choices(choices: list[str]) -> str:
 
 class GeminiClient:
     def __init__(self, config: Config):
-        api_key = os.environ.get("GEMINI_API_KEY")
-        if not api_key:
-            print("ERROR: GEMINI_API_KEY not set.")
-            print("Get a free key at: https://aistudio.google.com/apikey")
-            print("Then run: export GEMINI_API_KEY='your-key-here'")
+        project = os.environ.get("GOOGLE_CLOUD_PROJECT")
+        location = os.environ.get("GOOGLE_CLOUD_LOCATION", "us-central1")
+        if not project:
+            print("ERROR: GOOGLE_CLOUD_PROJECT not set.")
+            print("Run: gcloud auth application-default login")
+            print("Then: export GOOGLE_CLOUD_PROJECT='your-project-id'")
             sys.exit(1)
 
-        import httpx
-
         self.client = genai.Client(
-            api_key=api_key,
+            vertexai=True,
+            project=project,
+            location=location,
             http_options=types.HttpOptions(
                 timeout=30_000,  # 30 second timeout (in ms)
             ),
