@@ -1,16 +1,16 @@
 {
-  "overall_flip_rate": 0.3333333333333333,
+  "overall_flip_rate": 0.0,
   "overall_targeted_flip_rate": 0.0,
   "per_strategy": {
     "combined": {
-      "flip_rate": 0.3333333333333333,
+      "flip_rate": 0.0,
       "targeted_flip_rate": 0.0,
-      "avg_confidence_shift": 3.3333333333333335,
+      "avg_confidence_shift": 0.0,
       "n_samples": 3
     }
   },
-  "rup_score": 0.6666666666666667,
-  "order_effect": 1.0,
+  "rup_score": 1.0,
+  "order_effect": 0.0,
   "config": {
     "judge_model": "gemini-2.0-flash",
     "truth_model": "gemini-2.0-flash",
