@@ -13,3 +13,6 @@ venv/
 # API keys / secrets
 .env.local
 secrets.json
+
+# Local status / notes
+*.md
