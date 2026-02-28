@@ -349,7 +349,7 @@ class GeminiClient:
             project=project,
             location=location,
             http_options=types.HttpOptions(
-                timeout=30_000,  # 30 second timeout (in ms)
+                timeout=120_000,  # 120 second timeout (gemini-2.5-pro can be slow)
             ),
         )
         self.config = config
@@ -907,9 +907,9 @@ if __name__ == "__main__":
     if args.mode == "compare":
         # Compare 3 judge models; truth/gaslight fixed to gemini-2.0-flash
         COMPARE_JUDGES = [
-            ("gemini-2.0-flash", "results_compare_flash"),
-            ("gemini-1.5-pro",   "results_compare_1.5pro"),
-            ("gemini-2.5-pro",   "results_compare_2.5pro"),
+            ("gemini-2.0-flash",   "results_compare_flash"),
+            ("gemini-1.5-pro-002", "results_compare_1.5pro"),
+            ("gemini-2.5-pro",     "results_compare_2.5pro"),
         ]
         compare_strategies = ["combined", "step_by_step", "targeted_attack"]
 
