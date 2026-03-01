@@ -13,3 +13,8 @@ venv/
 # API keys / secrets
 .env.local
 secrets.json
+
+
+#logs
+logs/
+*.log
