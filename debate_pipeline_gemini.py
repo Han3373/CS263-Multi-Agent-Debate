@@ -865,10 +865,10 @@ if __name__ == "__main__":
         "--mode",
         choices=["test", "full", "compare"],
         default="test",
-        help="'test' = 5 questions × 1 strategy (~20 API calls). "
-        "'full' = 50 questions × 8 strategies (~1300 calls). "
+        help="'test' = 5 questions × 1 strategy, 2 turns (~15 API calls). "
+        "'full' = 50 questions × 8 strategies, 5 turns (~2200 calls). "
         "'compare' = compare 3 judge models (flash/1.5-pro/2.5-pro), "
-        "30 questions × 3 strategies each.",
+        "30 questions × 3 strategies, 3 turns each.",
     )
     parser.add_argument(
         "--model",
@@ -898,7 +898,7 @@ if __name__ == "__main__":
             "authority", "jargon", "confidence", "emotional", "combined",
             "step_by_step", "false_premise", "targeted_attack",
         ],
-        num_turns=3,
+        num_turns=5,
         mmlu_subjects=["math", "health", "law", "psychology", "economics", "philosophy"],
         output_dir="results_full",
         api_delay=1.5,

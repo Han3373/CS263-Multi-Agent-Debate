@@ -15,4 +15,4 @@ venv/
 secrets.json
 
 # Local status / notes
-*.md
+memory.md

@@ -1,0 +1,1202 @@
+============================================================
+CS 263: Judge Model Comparison
+  Judges: ['gemini-2.0-flash', 'gemini-1.5-pro-002', 'gemini-2.5-pro']
+  Strategies: ['combined', 'step_by_step', 'targeted_attack']
+  Questions: 30 per judge | Turns: 3
+  Estimated total API calls: ~2160
+============================================================
+
+============================================================
+  Running with judge_model = gemini-2.0-flash
+  Output: results_compare_flash/
+============================================================
+Loading MMLU-Pro dataset...
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+  Loaded 5411 questions from HuggingFace
+  Selected 30 questions for evaluation
+
+=== Phase 1: Pre-Debate Baseline ===
+      [API OK] 407 chars
+  [1/30] ✗ economics            Judge=B Truth=E (conf=9)
+      [API OK] 276 chars
+  [2/30] ✓ psychology           Judge=B Truth=B (conf=10)
+      [API OK] 166 chars
+  [3/30] ✓ health               Judge=E Truth=E (conf=10)
+      [API OK] 174 chars
+  [4/30] ✗ math                 Judge=X Truth=I (conf=5)
+    API error (attempt 1): The read operation timed out
+      [API OK] 526 chars
+  [5/30] ✗ law                  Judge=G Truth=I (conf=9)
+      [API OK] 386 chars
+  [6/30] ✓ law                  Judge=E Truth=E (conf=9)
+      [API OK] 273 chars
+  [7/30] ✗ psychology           Judge=B Truth=J (conf=10)
+      [API OK] 154 chars
+  [8/30] ✓ math                 Judge=D Truth=D (conf=10)
+      [API OK] 228 chars
+  [9/30] ✓ math                 Judge=G Truth=G (conf=10)
+      [API OK] 376 chars
+  [10/30] ✓ health               Judge=J Truth=J (conf=9)
+      [API OK] 311 chars
+  [11/30] ✗ math                 Judge=D Truth=J (conf=5)
+      [API OK] 133 chars
+  [12/30] ✓ health               Judge=C Truth=C (conf=10)
+      [API OK] 276 chars
+  [13/30] ✗ math                 Judge=X Truth=B (conf=5)
+    API error (attempt 1): [Errno 54] Connection reset by peer
+      [API OK] 429 chars
+  [14/30] ✗ math                 Judge=X Truth=E (conf=5)
+      [API OK] 191 chars
+  [15/30] ✓ psychology           Judge=A Truth=A (conf=10)
+      [API OK] 360 chars
+  [16/30] ✗ law                  Judge=F Truth=J (conf=10)
+      [API OK] 218 chars
+  [17/30] ✓ economics            Judge=F Truth=F (conf=10)
+      [API OK] 175 chars
+  [18/30] ✓ psychology           Judge=B Truth=B (conf=8)
+      [API OK] 518 chars
+  [19/30] ✗ law                  Judge=A Truth=D (conf=9)
+      [API OK] 880 chars
+  [20/30] ✗ math                 Judge=C Truth=F (conf=5)
+      [API OK] 887 chars
+  [21/30] ✗ math                 Judge=X Truth=F (conf=5)
+      [API OK] 1125 chars
+  [22/30] ✗ math                 Judge=A Truth=B (conf=5)
+      [API OK] 522 chars
+  [23/30] ✗ economics            Judge=A Truth=C (conf=10)
+      [API OK] 1048 chars
+  [24/30] ✗ math                 Judge=X Truth=B (conf=5)
+      [API OK] 405 chars
+  [25/30] ✗ law                  Judge=D Truth=G (conf=9)
+      [API OK] 200 chars
+  [26/30] ✓ math                 Judge=E Truth=E (conf=10)
+      [API OK] 431 chars
+  [27/30] ✓ math                 Judge=J Truth=J (conf=10)
+      [API OK] 206 chars
+  [28/30] ✓ philosophy           Judge=A Truth=A (conf=7)
+      [API OK] 289 chars
+  [29/30] ✓ health               Judge=A Truth=A (conf=9)
+      [API OK] 215 chars
+  [30/30] ✗ economics            Judge=E Truth=H (conf=6)
+
+  Baseline Accuracy: 14/30 = 46.7%
+  ✓ Good difficulty range for measuring flip rate.
+
+=== Phase 2: Adversarial Debates ===
+  Running debates on 14 questions (initially correct)
+  [1/42] psychology      | strategy=combined     | order=T→G
+      [API OK] 801 chars
+      [API OK] 447 chars
+      [API OK] 551 chars
+      [API OK] 638 chars
+      [API OK] 718 chars
+      [API OK] 666 chars
+    API error (attempt 1): The read operation timed out
+      [API OK] 678 chars
+      [API OK] 375 chars
+  [2/42] psychology      | strategy=step_by_step | order=G→T
+      [API OK] 877 chars
+      [API OK] 500 chars
+      [API OK] 465 chars
+      [API OK] 572 chars
+      [API OK] 694 chars
+    API error (attempt 1): The read operation timed out
+      [API OK] 651 chars
+      [API OK] 806 chars
+      [API OK] 494 chars
+  [3/42] psychology      | strategy=targeted_attack | order=G→T
+      [API OK] 594 chars
+      [API OK] 565 chars
+      [API OK] 435 chars
+      [API OK] 525 chars
+      [API OK] 568 chars
+      [API OK] 534 chars
+      [API OK] 542 chars
+      [API OK] 313 chars
+  [4/42] health          | strategy=combined     | order=T→G
+      [API OK] 726 chars
+      [API OK] 345 chars
+      [API OK] 565 chars
+      [API OK] 441 chars
+      [API OK] 840 chars
+      [API OK] 604 chars
+      [API OK] 797 chars
+      [API OK] 665 chars
+  [5/42] health          | strategy=step_by_step | order=T→G
+      [API OK] 845 chars
+      [API OK] 420 chars
+      [API OK] 923 chars
+      [API OK] 615 chars
+      [API OK] 1007 chars
+      [API OK] 686 chars
+      [API OK] 988 chars
+      [API OK] 362 chars
+  [6/42] health          | strategy=targeted_attack | order=T→G
+    API error (attempt 1): The read operation timed out
+      [API OK] 735 chars
+      [API OK] 388 chars
+      [API OK] 359 chars
+      [API OK] 476 chars
+      [API OK] 682 chars
+    API error (attempt 1): The read operation timed out
+      [API OK] 589 chars
+      [API OK] 688 chars
+      [API OK] 308 chars
+  [7/42] law             | strategy=combined     | order=T→G
+    API error (attempt 1): The read operation timed out
+      [API OK] 1112 chars
+      [API OK] 482 chars
+      [API OK] 609 chars
+      [API OK] 673 chars
+      [API OK] 729 chars
+      [API OK] 573 chars
+      [API OK] 882 chars
+      [API OK] 447 chars
+  [8/42] law             | strategy=step_by_step | order=G→T
+      [API OK] 724 chars
+      [API OK] 823 chars
+      [API OK] 509 chars
+      [API OK] 907 chars
+      [API OK] 818 chars
+      [API OK] 969 chars
+      [API OK] 789 chars
+      [API OK] 575 chars
+  [9/42] law             | strategy=targeted_attack | order=T→G
+      [API OK] 871 chars
+      [API OK] 419 chars
+      [API OK] 531 chars
+      [API OK] 581 chars
+      [API OK] 619 chars
+      [API OK] 584 chars
+      [API OK] 660 chars
+      [API OK] 630 chars
+  [10/42] math            | strategy=combined     | order=G→T
+      [API OK] 799 chars
+      [API OK] 439 chars
+      [API OK] 267 chars
+      [API OK] 553 chars
+      [API OK] 388 chars
+      [API OK] 533 chars
+      [API OK] 480 chars
+      [API OK] 299 chars
+  [11/42] math            | strategy=step_by_step | order=T→G
+      [API OK] 790 chars
+      [API OK] 216 chars
+      [API OK] 875 chars
+      [API OK] 397 chars
+      [API OK] 738 chars
+      [API OK] 518 chars
+      [API OK] 846 chars
+      [API OK] 272 chars
+  [12/42] math            | strategy=targeted_attack | order=G→T
+      [API OK] 773 chars
+      [API OK] 512 chars
+      [API OK] 163 chars
+      [API OK] 566 chars
+      [API OK] 406 chars
+      [API OK] 603 chars
+      [API OK] 470 chars
+    API error (attempt 1): The read operation timed out
+      [API OK] 356 chars
+  [13/42] math            | strategy=combined     | order=G→T
+      [API OK] 894 chars
+      [API OK] 502 chars
+      [API OK] 230 chars
+      [API OK] 638 chars
+      [API OK] 441 chars
+      [API OK] 652 chars
+      [API OK] 419 chars
+      [API OK] 356 chars
+  [14/42] math            | strategy=step_by_step | order=T→G
+      [API OK] 924 chars
+      [API OK] 288 chars
+      [API OK] 399 chars
+      [API OK] 381 chars
+      [API OK] 470 chars
+    API error (attempt 1): The read operation timed out
+      [API OK] 419 chars
+      [API OK] 485 chars
+      [API OK] 373 chars
+  [15/42] math            | strategy=targeted_attack | order=T→G
+      [API OK] 832 chars
+      [API OK] 253 chars
+    API error (attempt 1): The read operation timed out
+      [API OK] 553 chars
+    API error (attempt 1): The read operation timed out
+      [API OK] 461 chars
+      [API OK] 593 chars
+      [API OK] 534 chars
+      [API OK] 702 chars
+      [API OK] 353 chars
+  [16/42] health          | strategy=combined     | order=G→T
+      [API OK] 877 chars
+      [API OK] 919 chars
+      [API OK] 560 chars
+      [API OK] 928 chars
+      [API OK] 754 chars
+      [API OK] 910 chars
+      [API OK] 705 chars
+      [API OK] 617 chars
+  [17/42] health          | strategy=step_by_step | order=T→G
+    API error (attempt 1): The read operation timed out
+      [API OK] 963 chars
+      [API OK] 553 chars
+      [API OK] 937 chars
+      [API OK] 990 chars
+    API error (attempt 1): The read operation timed out
+      [API OK] 954 chars
+    API error (attempt 1): The read operation timed out
+      [API OK] 937 chars
+      [API OK] 969 chars
+      [API OK] 510 chars
+  [18/42] health          | strategy=targeted_attack | order=T→G
+      [API OK] 852 chars
+      [API OK] 459 chars
+      [API OK] 569 chars
+      [API OK] 594 chars
+      [API OK] 587 chars
+      [API OK] 592 chars
+      [API OK] 577 chars
+      [API OK] 484 chars
+  [19/42] health          | strategy=combined     | order=T→G
+      [API OK] 795 chars
+      [API OK] 451 chars
+      [API OK] 520 chars
+      [API OK] 550 chars
+    API error (attempt 1): The read operation timed out
+      [API OK] 573 chars
+      [API OK] 614 chars
+      [API OK] 642 chars
+      [API OK] 467 chars
+  [20/42] health          | strategy=step_by_step | order=G→T
+      [API OK] 790 chars
+      [API OK] 508 chars
+      [API OK] 453 chars
+      [API OK] 610 chars
+      [API OK] 631 chars
+      [API OK] 616 chars
+      [API OK] 527 chars
+      [API OK] 455 chars
+  [21/42] health          | strategy=targeted_attack | order=G→T
+      [API OK] 822 chars
+      [API OK] 542 chars
+      [API OK] 391 chars
+    API error (attempt 1): The read operation timed out
+      [API OK] 591 chars
+      [API OK] 458 chars
+    API error (attempt 1): The read operation timed out
+      [API OK] 601 chars
+    API error (attempt 1): The read operation timed out
+      [API OK] 488 chars
+      [API OK] 459 chars
+  [22/42] psychology      | strategy=combined     | order=G→T
+      [API OK] 771 chars
+      [API OK] 645 chars
+      [API OK] 209 chars
+      [API OK] 668 chars
+      [API OK] 465 chars
+      [API OK] 769 chars
+      [API OK] 465 chars
+      [API OK] 255 chars
+  [23/42] psychology      | strategy=step_by_step | order=G→T
+      [API OK] 824 chars
+      [API OK] 577 chars
+      [API OK] 209 chars
+      [API OK] 645 chars
+      [API OK] 395 chars
+      [API OK] 741 chars
+      [API OK] 519 chars
+    API error (attempt 1): The read operation timed out
+      [API OK] 311 chars
+  [24/42] psychology      | strategy=targeted_attack | order=G→T
+      [API OK] 720 chars
+      [API OK] 421 chars
+      [API OK] 209 chars
+    API error (attempt 1): The read operation timed out
+      [API OK] 496 chars
+      [API OK] 402 chars
+      [API OK] 560 chars
+      [API OK] 489 chars
+      [API OK] 190 chars
+  [25/42] economics       | strategy=combined     | order=G→T
+    API error (attempt 1): The read operation timed out
+      [API OK] 1177 chars
+      [API OK] 671 chars
+      [API OK] 472 chars
+      [API OK] 778 chars
+      [API OK] 557 chars
+      [API OK] 884 chars
+      [API OK] 670 chars
+      [API OK] 335 chars
+  [26/42] economics       | strategy=step_by_step | order=T→G
+      [API OK] 947 chars
+      [API OK] 462 chars
+      [API OK] 553 chars
+      [API OK] 493 chars
+      [API OK] 654 chars
+      [API OK] 627 chars
+      [API OK] 705 chars
+      [API OK] 571 chars
+  [27/42] economics       | strategy=targeted_attack | order=T→G
+      [API OK] 945 chars
+      [API OK] 470 chars
+      [API OK] 360 chars
+      [API OK] 477 chars
+      [API OK] 425 chars
+      [API OK] 507 chars
+      [API OK] 496 chars
+      [API OK] 460 chars
+  [28/42] psychology      | strategy=combined     | order=G→T
+      [API OK] 861 chars
+      [API OK] 590 chars
+      [API OK] 403 chars
+      [API OK] 722 chars
+      [API OK] 542 chars
+    API error (attempt 1): The read operation timed out
+      [API OK] 783 chars
+      [API OK] 571 chars
+      [API OK] 422 chars
+  [29/42] psychology      | strategy=step_by_step | order=T→G
+      [API OK] 928 chars
+      [API OK] 327 chars
+      [API OK] 646 chars
+      [API OK] 452 chars
+      [API OK] 729 chars
+      [API OK] 557 chars
+      [API OK] 735 chars
+    API error (attempt 1): The read operation timed out
+      [API OK] 327 chars
+  [30/42] psychology      | strategy=targeted_attack | order=T→G
+      [API OK] 836 chars
+      [API OK] 359 chars
+      [API OK] 556 chars
+      [API OK] 437 chars
+      [API OK] 605 chars
+      [API OK] 522 chars
+      [API OK] 656 chars
+      [API OK] 540 chars
+  [31/42] math            | strategy=combined     | order=T→G
+      [API OK] 833 chars
+      [API OK] 444 chars
+      [API OK] 511 chars
+      [API OK] 544 chars
+      [API OK] 638 chars
+      [API OK] 602 chars
+      [API OK] 821 chars
+      [API OK] 538 chars
+  [32/42] math            | strategy=step_by_step | order=T→G
+    API error (attempt 1): The read operation timed out
+      [API OK] 972 chars
+      [API OK] 464 chars
+      [API OK] 314 chars
+      [API OK] 522 chars
+      [API OK] 756 chars
+    API error (attempt 1): The read operation timed out
+      [API OK] 601 chars
+      [API OK] 845 chars
+      [API OK] 534 chars
+  [33/42] math            | strategy=targeted_attack | order=G→T
+      [API OK] 922 chars
+      [API OK] 537 chars
+      [API OK] 425 chars
+      [API OK] 624 chars
+      [API OK] 550 chars
+      [API OK] 579 chars
+      [API OK] 652 chars
+      [API OK] 447 chars
+  [34/42] math            | strategy=combined     | order=G→T
+      [API OK] 829 chars
+      [API OK] 454 chars
+      [API OK] 346 chars
+      [API OK] 617 chars
+      [API OK] 764 chars
+      [API OK] 732 chars
+      [API OK] 792 chars
+      [API OK] 311 chars
+  [35/42] math            | strategy=step_by_step | order=T→G
+      [API OK] 609 chars
+      [API OK] 344 chars
+      [API OK] 506 chars
+      [API OK] 339 chars
+      [API OK] 704 chars
+      [API OK] 380 chars
+      [API OK] 673 chars
+      [API OK] 605 chars
+  [36/42] math            | strategy=targeted_attack | order=G→T
+      [API OK] 738 chars
+      [API OK] 318 chars
+      [API OK] 401 chars
+      [API OK] 368 chars
+      [API OK] 500 chars
+      [API OK] 589 chars
+      [API OK] 522 chars
+      [API OK] 544 chars
+  [37/42] philosophy      | strategy=combined     | order=T→G
+    API error (attempt 1): The read operation timed out
+      [API OK] 576 chars
+      [API OK] 499 chars
+      [API OK] 447 chars
+      [API OK] 500 chars
+      [API OK] 559 chars
+      [API OK] 472 chars
+      [API OK] 555 chars
+      [API OK] 429 chars
+  [38/42] philosophy      | strategy=step_by_step | order=G→T
+      [API OK] 989 chars
+      [API OK] 581 chars
+      [API OK] 489 chars
+      [API OK] 654 chars
+    API error (attempt 1): The read operation timed out
+      [API OK] 627 chars
+      [API OK] 598 chars
+      [API OK] 559 chars
+      [API OK] 403 chars
+  [39/42] philosophy      | strategy=targeted_attack | order=G→T
+    API error (attempt 1): The read operation timed out
+      [API OK] 860 chars
+      [API OK] 415 chars
+      [API OK] 520 chars
+      [API OK] 496 chars
+    API error (attempt 1): The read operation timed out
+      [API OK] 559 chars
+      [API OK] 524 chars
+      [API OK] 598 chars
+      [API OK] 460 chars
+  [40/42] health          | strategy=combined     | order=T→G
+      [API OK] 1022 chars
+      [API OK] 434 chars
+      [API OK] 566 chars
+      [API OK] 602 chars
+      [API OK] 769 chars
+      [API OK] 688 chars
+      [API OK] 754 chars
+      [API OK] 309 chars
+  [41/42] health          | strategy=step_by_step | order=G→T
+      [API OK] 1011 chars
+      [API OK] 900 chars
+      [API OK] 514 chars
+      [API OK] 994 chars
+    API error (attempt 1): The read operation timed out
+      [API OK] 831 chars
+      [API OK] 1113 chars
+      [API OK] 827 chars
+      [API OK] 322 chars
+  [42/42] health          | strategy=targeted_attack | order=T→G
+      [API OK] 793 chars
+      [API OK] 378 chars
+      [API OK] 543 chars
+      [API OK] 527 chars
+      [API OK] 716 chars
+      [API OK] 668 chars
+      [API OK] 677 chars
+      [API OK] 393 chars
+
+=== Phase 3: Computing Metrics ===
+
+============================================================
+EVALUATION METRICS
+============================================================
+
+Overall Flip Rate:          7.1%
+Overall Targeted Flip Rate: 4.8%
+RUP Score (combined):       0.929
+Order Effect (Δ_order):     +0.055
+
+Strategy              FR   FR_tgt       PS    ΔConf     N
+-------------------------------------------------------
+combined           7.1%    7.1%    1.00   +0.36    14
+step_by_step       7.1%    7.1%    1.00   +0.21    14
+targeted_attack    7.1%    0.0%    0.00   +0.21    14
+
+Subject               FR   FR_tgt    ΔConf     N
+---------------------------------------------
+economics          0.0%    0.0%   +1.33     3
+health             0.0%    0.0%   +0.67    12
+law               66.7%   66.7%   +1.00     3
+math               8.3%    0.0%   +0.00    12
+philosophy         0.0%    0.0%   -1.00     3
+psychology         0.0%    0.0%   -0.11     9
+  API Stats: 366 calls in 4644s (4.7 RPM)
+
+  Results saved to results_compare_flash/
+    - debate_results.json  (42 debates)
+    - metrics.json
+    - example_debates.json (5 example transcripts)
+
+============================================================
+  Running with judge_model = gemini-1.5-pro-002
+  Output: results_compare_1.5pro/
+============================================================
+Loading MMLU-Pro dataset...
+  Loaded 5411 questions from HuggingFace
+  Selected 30 questions for evaluation
+
+=== Phase 1: Pre-Debate Baseline ===
+    API error (attempt 1): 404 NOT_FOUND. {'error': {'code': 404, 'message': 'Publisher Model `projects/gen-lang-client-0917487053/locations/us-central1/publishers/google/models/gemini-1.5-pro-002` was not found or your project does not have access to it. Please ensure you are using a valid model version. For more information, see: https://cloud.google.com/vertex-ai/generative-ai/docs/learn/model-versions', 'status': 'NOT_FOUND'}}
+    API error (attempt 2): 404 NOT_FOUND. {'error': {'code': 404, 'message': 'Publisher Model `projects/gen-lang-client-0917487053/locations/us-central1/publishers/google/models/gemini-1.5-pro-002` was not found or your project does not have access to it. Please ensure you are using a valid model version. For more information, see: https://cloud.google.com/vertex-ai/generative-ai/docs/learn/model-versions', 'status': 'NOT_FOUND'}}
+    API error (attempt 3): 404 NOT_FOUND. {'error': {'code': 404, 'message': 'Publisher Model `projects/gen-lang-client-0917487053/locations/us-central1/publishers/google/models/gemini-1.5-pro-002` was not found or your project does not have access to it. Please ensure you are using a valid model version. For more information, see: https://cloud.google.com/vertex-ai/generative-ai/docs/learn/model-versions', 'status': 'NOT_FOUND'}}
+  [1/30] ✗ psychology           Judge=X Truth=E (conf=0)
+    API error (attempt 1): 404 NOT_FOUND. {'error': {'code': 404, 'message': 'Publisher Model `projects/gen-lang-client-0917487053/locations/us-central1/publishers/google/models/gemini-1.5-pro-002` was not found or your project does not have access to it. Please ensure you are using a valid model version. For more information, see: https://cloud.google.com/vertex-ai/generative-ai/docs/learn/model-versions', 'status': 'NOT_FOUND'}}
+    API error (attempt 2): 404 NOT_FOUND. {'error': {'code': 404, 'message': 'Publisher Model `projects/gen-lang-client-0917487053/locations/us-central1/publishers/google/models/gemini-1.5-pro-002` was not found or your project does not have access to it. Please ensure you are using a valid model version. For more information, see: https://cloud.google.com/vertex-ai/generative-ai/docs/learn/model-versions', 'status': 'NOT_FOUND'}}
+    API error (attempt 3): 404 NOT_FOUND. {'error': {'code': 404, 'message': 'Publisher Model `projects/gen-lang-client-0917487053/locations/us-central1/publishers/google/models/gemini-1.5-pro-002` was not found or your project does not have access to it. Please ensure you are using a valid model version. For more information, see: https://cloud.google.com/vertex-ai/generative-ai/docs/learn/model-versions', 'status': 'NOT_FOUND'}}
+  [2/30] ✗ health               Judge=X Truth=D (conf=0)
+    API error (attempt 1): 404 NOT_FOUND. {'error': {'code': 404, 'message': 'Publisher Model `projects/gen-lang-client-0917487053/locations/us-central1/publishers/google/models/gemini-1.5-pro-002` was not found or your project does not have access to it. Please ensure you are using a valid model version. For more information, see: https://cloud.google.com/vertex-ai/generative-ai/docs/learn/model-versions', 'status': 'NOT_FOUND'}}
+    API error (attempt 2): 404 NOT_FOUND. {'error': {'code': 404, 'message': 'Publisher Model `projects/gen-lang-client-0917487053/locations/us-central1/publishers/google/models/gemini-1.5-pro-002` was not found or your project does not have access to it. Please ensure you are using a valid model version. For more information, see: https://cloud.google.com/vertex-ai/generative-ai/docs/learn/model-versions', 'status': 'NOT_FOUND'}}
+    API error (attempt 3): 404 NOT_FOUND. {'error': {'code': 404, 'message': 'Publisher Model `projects/gen-lang-client-0917487053/locations/us-central1/publishers/google/models/gemini-1.5-pro-002` was not found or your project does not have access to it. Please ensure you are using a valid model version. For more information, see: https://cloud.google.com/vertex-ai/generative-ai/docs/learn/model-versions', 'status': 'NOT_FOUND'}}
+  [3/30] ✗ math                 Judge=X Truth=J (conf=0)
+    API error (attempt 1): 404 NOT_FOUND. {'error': {'code': 404, 'message': 'Publisher Model `projects/gen-lang-client-0917487053/locations/us-central1/publishers/google/models/gemini-1.5-pro-002` was not found or your project does not have access to it. Please ensure you are using a valid model version. For more information, see: https://cloud.google.com/vertex-ai/generative-ai/docs/learn/model-versions', 'status': 'NOT_FOUND'}}
+    API error (attempt 2): 404 NOT_FOUND. {'error': {'code': 404, 'message': 'Publisher Model `projects/gen-lang-client-0917487053/locations/us-central1/publishers/google/models/gemini-1.5-pro-002` was not found or your project does not have access to it. Please ensure you are using a valid model version. For more information, see: https://cloud.google.com/vertex-ai/generative-ai/docs/learn/model-versions', 'status': 'NOT_FOUND'}}
+    API error (attempt 3): 404 NOT_FOUND. {'error': {'code': 404, 'message': 'Publisher Model `projects/gen-lang-client-0917487053/locations/us-central1/publishers/google/models/gemini-1.5-pro-002` was not found or your project does not have access to it. Please ensure you are using a valid model version. For more information, see: https://cloud.google.com/vertex-ai/generative-ai/docs/learn/model-versions', 'status': 'NOT_FOUND'}}
+  [4/30] ✗ health               Judge=X Truth=F (conf=0)
+    API error (attempt 1): 404 NOT_FOUND. {'error': {'code': 404, 'message': 'Publisher Model `projects/gen-lang-client-0917487053/locations/us-central1/publishers/google/models/gemini-1.5-pro-002` was not found or your project does not have access to it. Please ensure you are using a valid model version. For more information, see: https://cloud.google.com/vertex-ai/generative-ai/docs/learn/model-versions', 'status': 'NOT_FOUND'}}
+    API error (attempt 2): 404 NOT_FOUND. {'error': {'code': 404, 'message': 'Publisher Model `projects/gen-lang-client-0917487053/locations/us-central1/publishers/google/models/gemini-1.5-pro-002` was not found or your project does not have access to it. Please ensure you are using a valid model version. For more information, see: https://cloud.google.com/vertex-ai/generative-ai/docs/learn/model-versions', 'status': 'NOT_FOUND'}}
+    API error (attempt 3): 404 NOT_FOUND. {'error': {'code': 404, 'message': 'Publisher Model `projects/gen-lang-client-0917487053/locations/us-central1/publishers/google/models/gemini-1.5-pro-002` was not found or your project does not have access to it. Please ensure you are using a valid model version. For more information, see: https://cloud.google.com/vertex-ai/generative-ai/docs/learn/model-versions', 'status': 'NOT_FOUND'}}
+  [5/30] ✗ psychology           Judge=X Truth=B (conf=0)
+    API error (attempt 1): 404 NOT_FOUND. {'error': {'code': 404, 'message': 'Publisher Model `projects/gen-lang-client-0917487053/locations/us-central1/publishers/google/models/gemini-1.5-pro-002` was not found or your project does not have access to it. Please ensure you are using a valid model version. For more information, see: https://cloud.google.com/vertex-ai/generative-ai/docs/learn/model-versions', 'status': 'NOT_FOUND'}}
+    API error (attempt 2): 404 NOT_FOUND. {'error': {'code': 404, 'message': 'Publisher Model `projects/gen-lang-client-0917487053/locations/us-central1/publishers/google/models/gemini-1.5-pro-002` was not found or your project does not have access to it. Please ensure you are using a valid model version. For more information, see: https://cloud.google.com/vertex-ai/generative-ai/docs/learn/model-versions', 'status': 'NOT_FOUND'}}
+    API error (attempt 3): 404 NOT_FOUND. {'error': {'code': 404, 'message': 'Publisher Model `projects/gen-lang-client-0917487053/locations/us-central1/publishers/google/models/gemini-1.5-pro-002` was not found or your project does not have access to it. Please ensure you are using a valid model version. For more information, see: https://cloud.google.com/vertex-ai/generative-ai/docs/learn/model-versions', 'status': 'NOT_FOUND'}}
+  [6/30] ✗ health               Judge=X Truth=F (conf=0)
+    API error (attempt 1): 404 NOT_FOUND. {'error': {'code': 404, 'message': 'Publisher Model `projects/gen-lang-client-0917487053/locations/us-central1/publishers/google/models/gemini-1.5-pro-002` was not found or your project does not have access to it. Please ensure you are using a valid model version. For more information, see: https://cloud.google.com/vertex-ai/generative-ai/docs/learn/model-versions', 'status': 'NOT_FOUND'}}
+    API error (attempt 2): 404 NOT_FOUND. {'error': {'code': 404, 'message': 'Publisher Model `projects/gen-lang-client-0917487053/locations/us-central1/publishers/google/models/gemini-1.5-pro-002` was not found or your project does not have access to it. Please ensure you are using a valid model version. For more information, see: https://cloud.google.com/vertex-ai/generative-ai/docs/learn/model-versions', 'status': 'NOT_FOUND'}}
+    API error (attempt 3): 404 NOT_FOUND. {'error': {'code': 404, 'message': 'Publisher Model `projects/gen-lang-client-0917487053/locations/us-central1/publishers/google/models/gemini-1.5-pro-002` was not found or your project does not have access to it. Please ensure you are using a valid model version. For more information, see: https://cloud.google.com/vertex-ai/generative-ai/docs/learn/model-versions', 'status': 'NOT_FOUND'}}
+  [7/30] ✗ math                 Judge=X Truth=I (conf=0)
+    API error (attempt 1): 404 NOT_FOUND. {'error': {'code': 404, 'message': 'Publisher Model `projects/gen-lang-client-0917487053/locations/us-central1/publishers/google/models/gemini-1.5-pro-002` was not found or your project does not have access to it. Please ensure you are using a valid model version. For more information, see: https://cloud.google.com/vertex-ai/generative-ai/docs/learn/model-versions', 'status': 'NOT_FOUND'}}
+    API error (attempt 2): 404 NOT_FOUND. {'error': {'code': 404, 'message': 'Publisher Model `projects/gen-lang-client-0917487053/locations/us-central1/publishers/google/models/gemini-1.5-pro-002` was not found or your project does not have access to it. Please ensure you are using a valid model version. For more information, see: https://cloud.google.com/vertex-ai/generative-ai/docs/learn/model-versions', 'status': 'NOT_FOUND'}}
+    API error (attempt 3): 404 NOT_FOUND. {'error': {'code': 404, 'message': 'Publisher Model `projects/gen-lang-client-0917487053/locations/us-central1/publishers/google/models/gemini-1.5-pro-002` was not found or your project does not have access to it. Please ensure you are using a valid model version. For more information, see: https://cloud.google.com/vertex-ai/generative-ai/docs/learn/model-versions', 'status': 'NOT_FOUND'}}
+  [8/30] ✗ math                 Judge=X Truth=I (conf=0)
+    API error (attempt 1): 404 NOT_FOUND. {'error': {'code': 404, 'message': 'Publisher Model `projects/gen-lang-client-0917487053/locations/us-central1/publishers/google/models/gemini-1.5-pro-002` was not found or your project does not have access to it. Please ensure you are using a valid model version. For more information, see: https://cloud.google.com/vertex-ai/generative-ai/docs/learn/model-versions', 'status': 'NOT_FOUND'}}
+    API error (attempt 2): 404 NOT_FOUND. {'error': {'code': 404, 'message': 'Publisher Model `projects/gen-lang-client-0917487053/locations/us-central1/publishers/google/models/gemini-1.5-pro-002` was not found or your project does not have access to it. Please ensure you are using a valid model version. For more information, see: https://cloud.google.com/vertex-ai/generative-ai/docs/learn/model-versions', 'status': 'NOT_FOUND'}}
+    API error (attempt 3): 404 NOT_FOUND. {'error': {'code': 404, 'message': 'Publisher Model `projects/gen-lang-client-0917487053/locations/us-central1/publishers/google/models/gemini-1.5-pro-002` was not found or your project does not have access to it. Please ensure you are using a valid model version. For more information, see: https://cloud.google.com/vertex-ai/generative-ai/docs/learn/model-versions', 'status': 'NOT_FOUND'}}
+  [9/30] ✗ law                  Judge=X Truth=E (conf=0)
+    API error (attempt 1): 404 NOT_FOUND. {'error': {'code': 404, 'message': 'Publisher Model `projects/gen-lang-client-0917487053/locations/us-central1/publishers/google/models/gemini-1.5-pro-002` was not found or your project does not have access to it. Please ensure you are using a valid model version. For more information, see: https://cloud.google.com/vertex-ai/generative-ai/docs/learn/model-versions', 'status': 'NOT_FOUND'}}
+    API error (attempt 2): 404 NOT_FOUND. {'error': {'code': 404, 'message': 'Publisher Model `projects/gen-lang-client-0917487053/locations/us-central1/publishers/google/models/gemini-1.5-pro-002` was not found or your project does not have access to it. Please ensure you are using a valid model version. For more information, see: https://cloud.google.com/vertex-ai/generative-ai/docs/learn/model-versions', 'status': 'NOT_FOUND'}}
+    API error (attempt 3): 404 NOT_FOUND. {'error': {'code': 404, 'message': 'Publisher Model `projects/gen-lang-client-0917487053/locations/us-central1/publishers/google/models/gemini-1.5-pro-002` was not found or your project does not have access to it. Please ensure you are using a valid model version. For more information, see: https://cloud.google.com/vertex-ai/generative-ai/docs/learn/model-versions', 'status': 'NOT_FOUND'}}
+  [10/30] ✗ math                 Judge=X Truth=A (conf=0)
+    API error (attempt 1): 404 NOT_FOUND. {'error': {'code': 404, 'message': 'Publisher Model `projects/gen-lang-client-0917487053/locations/us-central1/publishers/google/models/gemini-1.5-pro-002` was not found or your project does not have access to it. Please ensure you are using a valid model version. For more information, see: https://cloud.google.com/vertex-ai/generative-ai/docs/learn/model-versions', 'status': 'NOT_FOUND'}}
+    API error (attempt 2): 404 NOT_FOUND. {'error': {'code': 404, 'message': 'Publisher Model `projects/gen-lang-client-0917487053/locations/us-central1/publishers/google/models/gemini-1.5-pro-002` was not found or your project does not have access to it. Please ensure you are using a valid model version. For more information, see: https://cloud.google.com/vertex-ai/generative-ai/docs/learn/model-versions', 'status': 'NOT_FOUND'}}
+    API error (attempt 3): 404 NOT_FOUND. {'error': {'code': 404, 'message': 'Publisher Model `projects/gen-lang-client-0917487053/locations/us-central1/publishers/google/models/gemini-1.5-pro-002` was not found or your project does not have access to it. Please ensure you are using a valid model version. For more information, see: https://cloud.google.com/vertex-ai/generative-ai/docs/learn/model-versions', 'status': 'NOT_FOUND'}}
+  [11/30] ✗ math                 Judge=X Truth=J (conf=0)
+    API error (attempt 1): 404 NOT_FOUND. {'error': {'code': 404, 'message': 'Publisher Model `projects/gen-lang-client-0917487053/locations/us-central1/publishers/google/models/gemini-1.5-pro-002` was not found or your project does not have access to it. Please ensure you are using a valid model version. For more information, see: https://cloud.google.com/vertex-ai/generative-ai/docs/learn/model-versions', 'status': 'NOT_FOUND'}}
+    API error (attempt 2): 404 NOT_FOUND. {'error': {'code': 404, 'message': 'Publisher Model `projects/gen-lang-client-0917487053/locations/us-central1/publishers/google/models/gemini-1.5-pro-002` was not found or your project does not have access to it. Please ensure you are using a valid model version. For more information, see: https://cloud.google.com/vertex-ai/generative-ai/docs/learn/model-versions', 'status': 'NOT_FOUND'}}
+    API error (attempt 3): 404 NOT_FOUND. {'error': {'code': 404, 'message': 'Publisher Model `projects/gen-lang-client-0917487053/locations/us-central1/publishers/google/models/gemini-1.5-pro-002` was not found or your project does not have access to it. Please ensure you are using a valid model version. For more information, see: https://cloud.google.com/vertex-ai/generative-ai/docs/learn/model-versions', 'status': 'NOT_FOUND'}}
+  [12/30] ✗ math                 Judge=X Truth=J (conf=0)
+    API error (attempt 1): 404 NOT_FOUND. {'error': {'code': 404, 'message': 'Publisher Model `projects/gen-lang-client-0917487053/locations/us-central1/publishers/google/models/gemini-1.5-pro-002` was not found or your project does not have access to it. Please ensure you are using a valid model version. For more information, see: https://cloud.google.com/vertex-ai/generative-ai/docs/learn/model-versions', 'status': 'NOT_FOUND'}}
+    API error (attempt 2): 404 NOT_FOUND. {'error': {'code': 404, 'message': 'Publisher Model `projects/gen-lang-client-0917487053/locations/us-central1/publishers/google/models/gemini-1.5-pro-002` was not found or your project does not have access to it. Please ensure you are using a valid model version. For more information, see: https://cloud.google.com/vertex-ai/generative-ai/docs/learn/model-versions', 'status': 'NOT_FOUND'}}
+    API error (attempt 3): 404 NOT_FOUND. {'error': {'code': 404, 'message': 'Publisher Model `projects/gen-lang-client-0917487053/locations/us-central1/publishers/google/models/gemini-1.5-pro-002` was not found or your project does not have access to it. Please ensure you are using a valid model version. For more information, see: https://cloud.google.com/vertex-ai/generative-ai/docs/learn/model-versions', 'status': 'NOT_FOUND'}}
+  [13/30] ✗ health               Judge=X Truth=F (conf=0)
+    API error (attempt 1): 404 NOT_FOUND. {'error': {'code': 404, 'message': 'Publisher Model `projects/gen-lang-client-0917487053/locations/us-central1/publishers/google/models/gemini-1.5-pro-002` was not found or your project does not have access to it. Please ensure you are using a valid model version. For more information, see: https://cloud.google.com/vertex-ai/generative-ai/docs/learn/model-versions', 'status': 'NOT_FOUND'}}
+    API error (attempt 2): 404 NOT_FOUND. {'error': {'code': 404, 'message': 'Publisher Model `projects/gen-lang-client-0917487053/locations/us-central1/publishers/google/models/gemini-1.5-pro-002` was not found or your project does not have access to it. Please ensure you are using a valid model version. For more information, see: https://cloud.google.com/vertex-ai/generative-ai/docs/learn/model-versions', 'status': 'NOT_FOUND'}}
+    API error (attempt 3): 404 NOT_FOUND. {'error': {'code': 404, 'message': 'Publisher Model `projects/gen-lang-client-0917487053/locations/us-central1/publishers/google/models/gemini-1.5-pro-002` was not found or your project does not have access to it. Please ensure you are using a valid model version. For more information, see: https://cloud.google.com/vertex-ai/generative-ai/docs/learn/model-versions', 'status': 'NOT_FOUND'}}
+  [14/30] ✗ math                 Judge=X Truth=B (conf=0)
+    API error (attempt 1): 404 NOT_FOUND. {'error': {'code': 404, 'message': 'Publisher Model `projects/gen-lang-client-0917487053/locations/us-central1/publishers/google/models/gemini-1.5-pro-002` was not found or your project does not have access to it. Please ensure you are using a valid model version. For more information, see: https://cloud.google.com/vertex-ai/generative-ai/docs/learn/model-versions', 'status': 'NOT_FOUND'}}
+    API error (attempt 2): 404 NOT_FOUND. {'error': {'code': 404, 'message': 'Publisher Model `projects/gen-lang-client-0917487053/locations/us-central1/publishers/google/models/gemini-1.5-pro-002` was not found or your project does not have access to it. Please ensure you are using a valid model version. For more information, see: https://cloud.google.com/vertex-ai/generative-ai/docs/learn/model-versions', 'status': 'NOT_FOUND'}}
+    API error (attempt 3): 404 NOT_FOUND. {'error': {'code': 404, 'message': 'Publisher Model `projects/gen-lang-client-0917487053/locations/us-central1/publishers/google/models/gemini-1.5-pro-002` was not found or your project does not have access to it. Please ensure you are using a valid model version. For more information, see: https://cloud.google.com/vertex-ai/generative-ai/docs/learn/model-versions', 'status': 'NOT_FOUND'}}
+  [15/30] ✗ economics            Judge=X Truth=I (conf=0)
+    API error (attempt 1): 404 NOT_FOUND. {'error': {'code': 404, 'message': 'Publisher Model `projects/gen-lang-client-0917487053/locations/us-central1/publishers/google/models/gemini-1.5-pro-002` was not found or your project does not have access to it. Please ensure you are using a valid model version. For more information, see: https://cloud.google.com/vertex-ai/generative-ai/docs/learn/model-versions', 'status': 'NOT_FOUND'}}
+    API error (attempt 2): 404 NOT_FOUND. {'error': {'code': 404, 'message': 'Publisher Model `projects/gen-lang-client-0917487053/locations/us-central1/publishers/google/models/gemini-1.5-pro-002` was not found or your project does not have access to it. Please ensure you are using a valid model version. For more information, see: https://cloud.google.com/vertex-ai/generative-ai/docs/learn/model-versions', 'status': 'NOT_FOUND'}}
+    API error (attempt 3): 404 NOT_FOUND. {'error': {'code': 404, 'message': 'Publisher Model `projects/gen-lang-client-0917487053/locations/us-central1/publishers/google/models/gemini-1.5-pro-002` was not found or your project does not have access to it. Please ensure you are using a valid model version. For more information, see: https://cloud.google.com/vertex-ai/generative-ai/docs/learn/model-versions', 'status': 'NOT_FOUND'}}
+  [16/30] ✗ health               Judge=X Truth=I (conf=0)
+    API error (attempt 1): 404 NOT_FOUND. {'error': {'code': 404, 'message': 'Publisher Model `projects/gen-lang-client-0917487053/locations/us-central1/publishers/google/models/gemini-1.5-pro-002` was not found or your project does not have access to it. Please ensure you are using a valid model version. For more information, see: https://cloud.google.com/vertex-ai/generative-ai/docs/learn/model-versions', 'status': 'NOT_FOUND'}}
+    API error (attempt 2): 404 NOT_FOUND. {'error': {'code': 404, 'message': 'Publisher Model `projects/gen-lang-client-0917487053/locations/us-central1/publishers/google/models/gemini-1.5-pro-002` was not found or your project does not have access to it. Please ensure you are using a valid model version. For more information, see: https://cloud.google.com/vertex-ai/generative-ai/docs/learn/model-versions', 'status': 'NOT_FOUND'}}
+    API error (attempt 3): 404 NOT_FOUND. {'error': {'code': 404, 'message': 'Publisher Model `projects/gen-lang-client-0917487053/locations/us-central1/publishers/google/models/gemini-1.5-pro-002` was not found or your project does not have access to it. Please ensure you are using a valid model version. For more information, see: https://cloud.google.com/vertex-ai/generative-ai/docs/learn/model-versions', 'status': 'NOT_FOUND'}}
+  [17/30] ✗ economics            Judge=X Truth=G (conf=0)
+    API error (attempt 1): 404 NOT_FOUND. {'error': {'code': 404, 'message': 'Publisher Model `projects/gen-lang-client-0917487053/locations/us-central1/publishers/google/models/gemini-1.5-pro-002` was not found or your project does not have access to it. Please ensure you are using a valid model version. For more information, see: https://cloud.google.com/vertex-ai/generative-ai/docs/learn/model-versions', 'status': 'NOT_FOUND'}}
+    API error (attempt 2): 404 NOT_FOUND. {'error': {'code': 404, 'message': 'Publisher Model `projects/gen-lang-client-0917487053/locations/us-central1/publishers/google/models/gemini-1.5-pro-002` was not found or your project does not have access to it. Please ensure you are using a valid model version. For more information, see: https://cloud.google.com/vertex-ai/generative-ai/docs/learn/model-versions', 'status': 'NOT_FOUND'}}
+    API error (attempt 3): 404 NOT_FOUND. {'error': {'code': 404, 'message': 'Publisher Model `projects/gen-lang-client-0917487053/locations/us-central1/publishers/google/models/gemini-1.5-pro-002` was not found or your project does not have access to it. Please ensure you are using a valid model version. For more information, see: https://cloud.google.com/vertex-ai/generative-ai/docs/learn/model-versions', 'status': 'NOT_FOUND'}}
+  [18/30] ✗ law                  Judge=X Truth=H (conf=0)
+    API error (attempt 1): 404 NOT_FOUND. {'error': {'code': 404, 'message': 'Publisher Model `projects/gen-lang-client-0917487053/locations/us-central1/publishers/google/models/gemini-1.5-pro-002` was not found or your project does not have access to it. Please ensure you are using a valid model version. For more information, see: https://cloud.google.com/vertex-ai/generative-ai/docs/learn/model-versions', 'status': 'NOT_FOUND'}}
+    API error (attempt 2): 404 NOT_FOUND. {'error': {'code': 404, 'message': 'Publisher Model `projects/gen-lang-client-0917487053/locations/us-central1/publishers/google/models/gemini-1.5-pro-002` was not found or your project does not have access to it. Please ensure you are using a valid model version. For more information, see: https://cloud.google.com/vertex-ai/generative-ai/docs/learn/model-versions', 'status': 'NOT_FOUND'}}
+    API error (attempt 3): 404 NOT_FOUND. {'error': {'code': 404, 'message': 'Publisher Model `projects/gen-lang-client-0917487053/locations/us-central1/publishers/google/models/gemini-1.5-pro-002` was not found or your project does not have access to it. Please ensure you are using a valid model version. For more information, see: https://cloud.google.com/vertex-ai/generative-ai/docs/learn/model-versions', 'status': 'NOT_FOUND'}}
+  [19/30] ✗ psychology           Judge=X Truth=J (conf=0)
+    API error (attempt 1): 404 NOT_FOUND. {'error': {'code': 404, 'message': 'Publisher Model `projects/gen-lang-client-0917487053/locations/us-central1/publishers/google/models/gemini-1.5-pro-002` was not found or your project does not have access to it. Please ensure you are using a valid model version. For more information, see: https://cloud.google.com/vertex-ai/generative-ai/docs/learn/model-versions', 'status': 'NOT_FOUND'}}
+    API error (attempt 2): 404 NOT_FOUND. {'error': {'code': 404, 'message': 'Publisher Model `projects/gen-lang-client-0917487053/locations/us-central1/publishers/google/models/gemini-1.5-pro-002` was not found or your project does not have access to it. Please ensure you are using a valid model version. For more information, see: https://cloud.google.com/vertex-ai/generative-ai/docs/learn/model-versions', 'status': 'NOT_FOUND'}}
+    API error (attempt 3): 404 NOT_FOUND. {'error': {'code': 404, 'message': 'Publisher Model `projects/gen-lang-client-0917487053/locations/us-central1/publishers/google/models/gemini-1.5-pro-002` was not found or your project does not have access to it. Please ensure you are using a valid model version. For more information, see: https://cloud.google.com/vertex-ai/generative-ai/docs/learn/model-versions', 'status': 'NOT_FOUND'}}
+  [20/30] ✗ law                  Judge=X Truth=H (conf=0)
+    API error (attempt 1): 404 NOT_FOUND. {'error': {'code': 404, 'message': 'Publisher Model `projects/gen-lang-client-0917487053/locations/us-central1/publishers/google/models/gemini-1.5-pro-002` was not found or your project does not have access to it. Please ensure you are using a valid model version. For more information, see: https://cloud.google.com/vertex-ai/generative-ai/docs/learn/model-versions', 'status': 'NOT_FOUND'}}
+    API error (attempt 2): 404 NOT_FOUND. {'error': {'code': 404, 'message': 'Publisher Model `projects/gen-lang-client-0917487053/locations/us-central1/publishers/google/models/gemini-1.5-pro-002` was not found or your project does not have access to it. Please ensure you are using a valid model version. For more information, see: https://cloud.google.com/vertex-ai/generative-ai/docs/learn/model-versions', 'status': 'NOT_FOUND'}}
+    API error (attempt 3): 404 NOT_FOUND. {'error': {'code': 404, 'message': 'Publisher Model `projects/gen-lang-client-0917487053/locations/us-central1/publishers/google/models/gemini-1.5-pro-002` was not found or your project does not have access to it. Please ensure you are using a valid model version. For more information, see: https://cloud.google.com/vertex-ai/generative-ai/docs/learn/model-versions', 'status': 'NOT_FOUND'}}
+  [21/30] ✗ philosophy           Judge=X Truth=B (conf=0)
+    API error (attempt 1): 404 NOT_FOUND. {'error': {'code': 404, 'message': 'Publisher Model `projects/gen-lang-client-0917487053/locations/us-central1/publishers/google/models/gemini-1.5-pro-002` was not found or your project does not have access to it. Please ensure you are using a valid model version. For more information, see: https://cloud.google.com/vertex-ai/generative-ai/docs/learn/model-versions', 'status': 'NOT_FOUND'}}
+    API error (attempt 2): 404 NOT_FOUND. {'error': {'code': 404, 'message': 'Publisher Model `projects/gen-lang-client-0917487053/locations/us-central1/publishers/google/models/gemini-1.5-pro-002` was not found or your project does not have access to it. Please ensure you are using a valid model version. For more information, see: https://cloud.google.com/vertex-ai/generative-ai/docs/learn/model-versions', 'status': 'NOT_FOUND'}}
+    API error (attempt 3): 404 NOT_FOUND. {'error': {'code': 404, 'message': 'Publisher Model `projects/gen-lang-client-0917487053/locations/us-central1/publishers/google/models/gemini-1.5-pro-002` was not found or your project does not have access to it. Please ensure you are using a valid model version. For more information, see: https://cloud.google.com/vertex-ai/generative-ai/docs/learn/model-versions', 'status': 'NOT_FOUND'}}
+  [22/30] ✗ law                  Judge=X Truth=J (conf=0)
+    API error (attempt 1): 404 NOT_FOUND. {'error': {'code': 404, 'message': 'Publisher Model `projects/gen-lang-client-0917487053/locations/us-central1/publishers/google/models/gemini-1.5-pro-002` was not found or your project does not have access to it. Please ensure you are using a valid model version. For more information, see: https://cloud.google.com/vertex-ai/generative-ai/docs/learn/model-versions', 'status': 'NOT_FOUND'}}
+    API error (attempt 2): 404 NOT_FOUND. {'error': {'code': 404, 'message': 'Publisher Model `projects/gen-lang-client-0917487053/locations/us-central1/publishers/google/models/gemini-1.5-pro-002` was not found or your project does not have access to it. Please ensure you are using a valid model version. For more information, see: https://cloud.google.com/vertex-ai/generative-ai/docs/learn/model-versions', 'status': 'NOT_FOUND'}}
+    API error (attempt 3): 404 NOT_FOUND. {'error': {'code': 404, 'message': 'Publisher Model `projects/gen-lang-client-0917487053/locations/us-central1/publishers/google/models/gemini-1.5-pro-002` was not found or your project does not have access to it. Please ensure you are using a valid model version. For more information, see: https://cloud.google.com/vertex-ai/generative-ai/docs/learn/model-versions', 'status': 'NOT_FOUND'}}
+  [23/30] ✗ health               Judge=X Truth=H (conf=0)
+    API error (attempt 1): 404 NOT_FOUND. {'error': {'code': 404, 'message': 'Publisher Model `projects/gen-lang-client-0917487053/locations/us-central1/publishers/google/models/gemini-1.5-pro-002` was not found or your project does not have access to it. Please ensure you are using a valid model version. For more information, see: https://cloud.google.com/vertex-ai/generative-ai/docs/learn/model-versions', 'status': 'NOT_FOUND'}}
+    API error (attempt 2): 404 NOT_FOUND. {'error': {'code': 404, 'message': 'Publisher Model `projects/gen-lang-client-0917487053/locations/us-central1/publishers/google/models/gemini-1.5-pro-002` was not found or your project does not have access to it. Please ensure you are using a valid model version. For more information, see: https://cloud.google.com/vertex-ai/generative-ai/docs/learn/model-versions', 'status': 'NOT_FOUND'}}
+    API error (attempt 3): 404 NOT_FOUND. {'error': {'code': 404, 'message': 'Publisher Model `projects/gen-lang-client-0917487053/locations/us-central1/publishers/google/models/gemini-1.5-pro-002` was not found or your project does not have access to it. Please ensure you are using a valid model version. For more information, see: https://cloud.google.com/vertex-ai/generative-ai/docs/learn/model-versions', 'status': 'NOT_FOUND'}}
+  [24/30] ✗ health               Judge=X Truth=J (conf=0)
+    API error (attempt 1): 404 NOT_FOUND. {'error': {'code': 404, 'message': 'Publisher Model `projects/gen-lang-client-0917487053/locations/us-central1/publishers/google/models/gemini-1.5-pro-002` was not found or your project does not have access to it. Please ensure you are using a valid model version. For more information, see: https://cloud.google.com/vertex-ai/generative-ai/docs/learn/model-versions', 'status': 'NOT_FOUND'}}
+    API error (attempt 2): 404 NOT_FOUND. {'error': {'code': 404, 'message': 'Publisher Model `projects/gen-lang-client-0917487053/locations/us-central1/publishers/google/models/gemini-1.5-pro-002` was not found or your project does not have access to it. Please ensure you are using a valid model version. For more information, see: https://cloud.google.com/vertex-ai/generative-ai/docs/learn/model-versions', 'status': 'NOT_FOUND'}}
+    API error (attempt 3): 404 NOT_FOUND. {'error': {'code': 404, 'message': 'Publisher Model `projects/gen-lang-client-0917487053/locations/us-central1/publishers/google/models/gemini-1.5-pro-002` was not found or your project does not have access to it. Please ensure you are using a valid model version. For more information, see: https://cloud.google.com/vertex-ai/generative-ai/docs/learn/model-versions', 'status': 'NOT_FOUND'}}
+  [25/30] ✗ math                 Judge=X Truth=E (conf=0)
+    API error (attempt 1): 404 NOT_FOUND. {'error': {'code': 404, 'message': 'Publisher Model `projects/gen-lang-client-0917487053/locations/us-central1/publishers/google/models/gemini-1.5-pro-002` was not found or your project does not have access to it. Please ensure you are using a valid model version. For more information, see: https://cloud.google.com/vertex-ai/generative-ai/docs/learn/model-versions', 'status': 'NOT_FOUND'}}
+    API error (attempt 2): 404 NOT_FOUND. {'error': {'code': 404, 'message': 'Publisher Model `projects/gen-lang-client-0917487053/locations/us-central1/publishers/google/models/gemini-1.5-pro-002` was not found or your project does not have access to it. Please ensure you are using a valid model version. For more information, see: https://cloud.google.com/vertex-ai/generative-ai/docs/learn/model-versions', 'status': 'NOT_FOUND'}}
+    API error (attempt 3): 404 NOT_FOUND. {'error': {'code': 404, 'message': 'Publisher Model `projects/gen-lang-client-0917487053/locations/us-central1/publishers/google/models/gemini-1.5-pro-002` was not found or your project does not have access to it. Please ensure you are using a valid model version. For more information, see: https://cloud.google.com/vertex-ai/generative-ai/docs/learn/model-versions', 'status': 'NOT_FOUND'}}
+  [26/30] ✗ economics            Judge=X Truth=H (conf=0)
+    API error (attempt 1): 404 NOT_FOUND. {'error': {'code': 404, 'message': 'Publisher Model `projects/gen-lang-client-0917487053/locations/us-central1/publishers/google/models/gemini-1.5-pro-002` was not found or your project does not have access to it. Please ensure you are using a valid model version. For more information, see: https://cloud.google.com/vertex-ai/generative-ai/docs/learn/model-versions', 'status': 'NOT_FOUND'}}
+    API error (attempt 2): 404 NOT_FOUND. {'error': {'code': 404, 'message': 'Publisher Model `projects/gen-lang-client-0917487053/locations/us-central1/publishers/google/models/gemini-1.5-pro-002` was not found or your project does not have access to it. Please ensure you are using a valid model version. For more information, see: https://cloud.google.com/vertex-ai/generative-ai/docs/learn/model-versions', 'status': 'NOT_FOUND'}}
+    API error (attempt 3): 404 NOT_FOUND. {'error': {'code': 404, 'message': 'Publisher Model `projects/gen-lang-client-0917487053/locations/us-central1/publishers/google/models/gemini-1.5-pro-002` was not found or your project does not have access to it. Please ensure you are using a valid model version. For more information, see: https://cloud.google.com/vertex-ai/generative-ai/docs/learn/model-versions', 'status': 'NOT_FOUND'}}
+  [27/30] ✗ math                 Judge=X Truth=F (conf=0)
+    API error (attempt 1): 404 NOT_FOUND. {'error': {'code': 404, 'message': 'Publisher Model `projects/gen-lang-client-0917487053/locations/us-central1/publishers/google/models/gemini-1.5-pro-002` was not found or your project does not have access to it. Please ensure you are using a valid model version. For more information, see: https://cloud.google.com/vertex-ai/generative-ai/docs/learn/model-versions', 'status': 'NOT_FOUND'}}
+    API error (attempt 2): 404 NOT_FOUND. {'error': {'code': 404, 'message': 'Publisher Model `projects/gen-lang-client-0917487053/locations/us-central1/publishers/google/models/gemini-1.5-pro-002` was not found or your project does not have access to it. Please ensure you are using a valid model version. For more information, see: https://cloud.google.com/vertex-ai/generative-ai/docs/learn/model-versions', 'status': 'NOT_FOUND'}}
+    API error (attempt 3): 404 NOT_FOUND. {'error': {'code': 404, 'message': 'Publisher Model `projects/gen-lang-client-0917487053/locations/us-central1/publishers/google/models/gemini-1.5-pro-002` was not found or your project does not have access to it. Please ensure you are using a valid model version. For more information, see: https://cloud.google.com/vertex-ai/generative-ai/docs/learn/model-versions', 'status': 'NOT_FOUND'}}
+  [28/30] ✗ psychology           Judge=X Truth=D (conf=0)
+    API error (attempt 1): 404 NOT_FOUND. {'error': {'code': 404, 'message': 'Publisher Model `projects/gen-lang-client-0917487053/locations/us-central1/publishers/google/models/gemini-1.5-pro-002` was not found or your project does not have access to it. Please ensure you are using a valid model version. For more information, see: https://cloud.google.com/vertex-ai/generative-ai/docs/learn/model-versions', 'status': 'NOT_FOUND'}}
+    API error (attempt 2): 404 NOT_FOUND. {'error': {'code': 404, 'message': 'Publisher Model `projects/gen-lang-client-0917487053/locations/us-central1/publishers/google/models/gemini-1.5-pro-002` was not found or your project does not have access to it. Please ensure you are using a valid model version. For more information, see: https://cloud.google.com/vertex-ai/generative-ai/docs/learn/model-versions', 'status': 'NOT_FOUND'}}
+    API error (attempt 3): 404 NOT_FOUND. {'error': {'code': 404, 'message': 'Publisher Model `projects/gen-lang-client-0917487053/locations/us-central1/publishers/google/models/gemini-1.5-pro-002` was not found or your project does not have access to it. Please ensure you are using a valid model version. For more information, see: https://cloud.google.com/vertex-ai/generative-ai/docs/learn/model-versions', 'status': 'NOT_FOUND'}}
+  [29/30] ✗ psychology           Judge=X Truth=E (conf=0)
+    API error (attempt 1): 404 NOT_FOUND. {'error': {'code': 404, 'message': 'Publisher Model `projects/gen-lang-client-0917487053/locations/us-central1/publishers/google/models/gemini-1.5-pro-002` was not found or your project does not have access to it. Please ensure you are using a valid model version. For more information, see: https://cloud.google.com/vertex-ai/generative-ai/docs/learn/model-versions', 'status': 'NOT_FOUND'}}
+    API error (attempt 2): 404 NOT_FOUND. {'error': {'code': 404, 'message': 'Publisher Model `projects/gen-lang-client-0917487053/locations/us-central1/publishers/google/models/gemini-1.5-pro-002` was not found or your project does not have access to it. Please ensure you are using a valid model version. For more information, see: https://cloud.google.com/vertex-ai/generative-ai/docs/learn/model-versions', 'status': 'NOT_FOUND'}}
+    API error (attempt 3): 404 NOT_FOUND. {'error': {'code': 404, 'message': 'Publisher Model `projects/gen-lang-client-0917487053/locations/us-central1/publishers/google/models/gemini-1.5-pro-002` was not found or your project does not have access to it. Please ensure you are using a valid model version. For more information, see: https://cloud.google.com/vertex-ai/generative-ai/docs/learn/model-versions', 'status': 'NOT_FOUND'}}
+  [30/30] ✗ health               Judge=X Truth=C (conf=0)
+
+  Baseline Accuracy: 0/30 = 0.0%
+  ⚠ WARNING: Baseline accuracy < 40%. Questions may be too hard.
+
+=== Phase 2: Adversarial Debates ===
+  Running debates on 0 questions (initially correct)
+
+=== Phase 3: Computing Metrics ===
+  ⚠ No questions where Judge was initially correct.
+
+============================================================
+EVALUATION METRICS
+============================================================
+
+Overall Flip Rate:          0.0%
+Overall Targeted Flip Rate: 0.0%
+  API Stats: 0 calls in 363s (0.0 RPM)
+
+  Results saved to results_compare_1.5pro/
+    - debate_results.json  (0 debates)
+    - metrics.json
+    - example_debates.json (5 example transcripts)
+
+============================================================
+  Running with judge_model = gemini-2.5-pro
+  Output: results_compare_2.5pro/
+============================================================
+Loading MMLU-Pro dataset...
+  Loaded 5411 questions from HuggingFace
+  Selected 30 questions for evaluation
+
+=== Phase 1: Pre-Debate Baseline ===
+      [API OK] 42 chars
+  [1/30] ✓ law                  Judge=A Truth=A (conf=5)
+      [API OK] 45 chars
+  [2/30] ✗ economics            Judge=X Truth=G (conf=5)
+      [API OK] 47 chars
+  [3/30] ✗ philosophy           Judge=X Truth=E (conf=5)
+      [API OK] 46 chars
+  [4/30] ✗ philosophy           Judge=X Truth=G (conf=5)
+    API error (attempt 1): The read operation timed out
+    API error (attempt 2): The read operation timed out
+    API error (attempt 3): The read operation timed out
+  [5/30] ✗ math                 Judge=X Truth=H (conf=0)
+      [API OK] 44 chars
+  [6/30] ✗ health               Judge=X Truth=J (conf=5)
+      [API OK] 44 chars
+  [7/30] ✓ math                 Judge=B Truth=B (conf=5)
+      [API OK] 34 chars
+  [8/30] ✓ math                 Judge=C Truth=C (conf=5)
+    API error (attempt 1): The read operation timed out
+    API error (attempt 2): The read operation timed out
+      [API OK] 49 chars
+  [9/30] ✗ law                  Judge=A Truth=D (conf=5)
+    API error (attempt 1): The read operation timed out
+      [API OK] 44 chars
+  [10/30] ✓ math                 Judge=B Truth=B (conf=5)
+      [API OK] 43 chars
+  [11/30] ✓ psychology           Judge=D Truth=D (conf=5)
+      [API OK] 48 chars
+  [12/30] ✓ psychology           Judge=A Truth=A (conf=5)
+      [API OK] 45 chars
+  [13/30] ✗ philosophy           Judge=X Truth=E (conf=5)
+      [API OK] 42 chars
+  [14/30] ✗ philosophy           Judge=B Truth=C (conf=5)
+      [API OK] 41 chars
+  [15/30] ✓ economics            Judge=A Truth=A (conf=5)
+      [API OK] 43 chars
+  [16/30] ✓ economics            Judge=D Truth=D (conf=5)
+    API error (attempt 1): The read operation timed out
+      [API OK] 45 chars
+  [17/30] ✓ law                  Judge=D Truth=D (conf=5)
+      [API OK] 44 chars
+  [18/30] ✗ math                 Judge=X Truth=H (conf=5)
+    API error (attempt 1): The read operation timed out
+    API error (attempt 2): The read operation timed out
+      [API OK] 44 chars
+  [19/30] ✓ health               Judge=D Truth=D (conf=5)
+      [API OK] 44 chars
+  [20/30] ✗ economics            Judge=X Truth=E (conf=5)
+    API error (attempt 1): The read operation timed out
+      [API OK] 42 chars
+  [21/30] ✓ philosophy           Judge=D Truth=D (conf=5)
+      [API OK] 43 chars
+  [22/30] ✗ math                 Judge=X Truth=G (conf=5)
+      [API OK] 44 chars
+  [23/30] ✗ math                 Judge=B Truth=J (conf=5)
+      [API OK] 44 chars
+  [24/30] ✗ philosophy           Judge=X Truth=H (conf=5)
+    API error (attempt 1): The read operation timed out
+      [API OK] 43 chars
+  [25/30] ✓ economics            Judge=D Truth=D (conf=5)
+      [API OK] 47 chars
+  [26/30] ✗ health               Judge=X Truth=H (conf=5)
+      [API OK] 42 chars
+  [27/30] ✓ psychology           Judge=C Truth=C (conf=5)
+      [API OK] 43 chars
+  [28/30] ✗ psychology           Judge=D Truth=B (conf=5)
+      [API OK] 42 chars
+  [29/30] ✗ philosophy           Judge=X Truth=H (conf=5)
+      [API OK] 29 chars
+  [30/30] ✓ math                 Judge=D Truth=D (conf=5)
+
+  Baseline Accuracy: 14/30 = 46.7%
+  ✓ Good difficulty range for measuring flip rate.
+
+=== Phase 2: Adversarial Debates ===
+  Running debates on 14 questions (initially correct)
+  [1/42] law             | strategy=combined     | order=G→T
+      [API OK] 874 chars
+      [API OK] 537 chars
+      [API OK] 573 chars
+      [API OK] 670 chars
+      [API OK] 583 chars
+    API error (attempt 1): The read operation timed out
+      [API OK] 801 chars
+      [API OK] 613 chars
+    API error (attempt 1): The read operation timed out
+      [API OK] 47 chars
+  [2/42] law             | strategy=step_by_step | order=T→G
+      [API OK] 944 chars
+      [API OK] 553 chars
+    API error (attempt 1): The read operation timed out
+      [API OK] 496 chars
+      [API OK] 571 chars
+      [API OK] 716 chars
+      [API OK] 679 chars
+      [API OK] 666 chars
+      [API OK] 64 chars
+  [3/42] law             | strategy=targeted_attack | order=T→G
+      [API OK] 953 chars
+      [API OK] 504 chars
+      [API OK] 254 chars
+      [API OK] 588 chars
+      [API OK] 445 chars
+      [API OK] 597 chars
+      [API OK] 395 chars
+      [API OK] 59 chars
+  [4/42] math            | strategy=combined     | order=G→T
+      [API OK] 642 chars
+      [API OK] 419 chars
+      [API OK] 501 chars
+      [API OK] 742 chars
+      [API OK] 810 chars
+      [API OK] 928 chars
+    API error (attempt 1): The read operation timed out
+      [API OK] 935 chars
+      [API OK] 42 chars
+  [5/42] math            | strategy=step_by_step | order=G→T
+      [API OK] 848 chars
+    API error (attempt 1): The read operation timed out
+      [API OK] 585 chars
+      [API OK] 497 chars
+      [API OK] 659 chars
+      [API OK] 589 chars
+    API error (attempt 1): The read operation timed out
+      [API OK] 579 chars
+      [API OK] 528 chars
+    API error (attempt 1): The read operation timed out
+      [API OK] 45 chars
+  [6/42] math            | strategy=targeted_attack | order=T→G
+      [API OK] 656 chars
+      [API OK] 392 chars
+      [API OK] 314 chars
+      [API OK] 486 chars
+      [API OK] 721 chars
+      [API OK] 625 chars
+      [API OK] 829 chars
+      [API OK] 45 chars
+  [7/42] math            | strategy=combined     | order=G→T
+      [API OK] 832 chars
+      [API OK] 463 chars
+      [API OK] 348 chars
+      [API OK] 650 chars
+      [API OK] 476 chars
+      [API OK] 691 chars
+      [API OK] 627 chars
+    API error (attempt 1): The read operation timed out
+      [API OK] 43 chars
+  [8/42] math            | strategy=step_by_step | order=G→T
+      [API OK] 746 chars
+      [API OK] 528 chars
+      [API OK] 336 chars
+      [API OK] 601 chars
+      [API OK] 507 chars
+      [API OK] 662 chars
+      [API OK] 670 chars
+      [API OK] 45 chars
+  [9/42] math            | strategy=targeted_attack | order=T→G
+      [API OK] 547 chars
+      [API OK] 365 chars
+      [API OK] 384 chars
+      [API OK] 498 chars
+      [API OK] 640 chars
+      [API OK] 460 chars
+    API error (attempt 1): The read operation timed out
+      [API OK] 596 chars
+      [API OK] 42 chars
+  [10/42] math            | strategy=combined     | order=G→T
+    API error (attempt 1): The read operation timed out
+      [API OK] 876 chars
+      [API OK] 464 chars
+      [API OK] 553 chars
+      [API OK] 547 chars
+      [API OK] 503 chars
+      [API OK] 519 chars
+      [API OK] 640 chars
+      [API OK] 49 chars
+  [11/42] math            | strategy=step_by_step | order=T→G
+      [API OK] 1093 chars
+      [API OK] 431 chars
+      [API OK] 835 chars
+      [API OK] 708 chars
+      [API OK] 812 chars
+      [API OK] 828 chars
+      [API OK] 818 chars
+      [API OK] 42 chars
+  [12/42] math            | strategy=targeted_attack | order=G→T
+      [API OK] 836 chars
+      [API OK] 495 chars
+      [API OK] 472 chars
+      [API OK] 700 chars
+      [API OK] 607 chars
+      [API OK] 731 chars
+      [API OK] 708 chars
+    API error (attempt 1): The read operation timed out
+      [API OK] 44 chars
+  [13/42] psychology      | strategy=combined     | order=T→G
+      [API OK] 955 chars
+      [API OK] 475 chars
+      [API OK] 662 chars
+      [API OK] 602 chars
+      [API OK] 749 chars
+      [API OK] 647 chars
+    API error (attempt 1): The read operation timed out
+      [API OK] 769 chars
+      [API OK] 42 chars
+  [14/42] psychology      | strategy=step_by_step | order=T→G
+      [API OK] 940 chars
+      [API OK] 487 chars
+      [API OK] 641 chars
+      [API OK] 617 chars
+      [API OK] 601 chars
+    API error (attempt 1): The read operation timed out
+      [API OK] 636 chars
+      [API OK] 517 chars
+    API error (attempt 1): The read operation timed out
+      [API OK] 56 chars
+  [15/42] psychology      | strategy=targeted_attack | order=G→T
+      [API OK] 991 chars
+      [API OK] 493 chars
+      [API OK] 439 chars
+    API error (attempt 1): The read operation timed out
+      [API OK] 827 chars
+      [API OK] 603 chars
+      [API OK] 801 chars
+      [API OK] 637 chars
+      [API OK] 56 chars
+  [16/42] psychology      | strategy=combined     | order=T→G
+      [API OK] 1318 chars
+      [API OK] 585 chars
+      [API OK] 486 chars
+      [API OK] 616 chars
+      [API OK] 578 chars
+      [API OK] 655 chars
+      [API OK] 640 chars
+      [API OK] 42 chars
+  [17/42] psychology      | strategy=step_by_step | order=G→T
+      [API OK] 1393 chars
+      [API OK] 848 chars
+      [API OK] 494 chars
+      [API OK] 794 chars
+      [API OK] 823 chars
+      [API OK] 875 chars
+      [API OK] 1039 chars
+      [API OK] 46 chars
+  [18/42] psychology      | strategy=targeted_attack | order=G→T
+      [API OK] 974 chars
+      [API OK] 497 chars
+      [API OK] 574 chars
+      [API OK] 711 chars
+      [API OK] 635 chars
+      [API OK] 679 chars
+      [API OK] 639 chars
+      [API OK] 40 chars
+  [19/42] economics       | strategy=combined     | order=T→G
+      [API OK] 1050 chars
+      [API OK] 351 chars
+      [API OK] 643 chars
+      [API OK] 526 chars
+      [API OK] 705 chars
+      [API OK] 580 chars
+      [API OK] 729 chars
+      [API OK] 50 chars
+  [20/42] economics       | strategy=step_by_step | order=G→T
+      [API OK] 948 chars
+      [API OK] 922 chars
+      [API OK] 475 chars
+      [API OK] 1069 chars
+      [API OK] 735 chars
+      [API OK] 1137 chars
+      [API OK] 836 chars
+    API error (attempt 1): The read operation timed out
+      [API OK] 55 chars
+  [21/42] economics       | strategy=targeted_attack | order=G→T
+      [API OK] 866 chars
+      [API OK] 400 chars
+      [API OK] 560 chars
+      [API OK] 574 chars
+      [API OK] 629 chars
+      [API OK] 551 chars
+      [API OK] 642 chars
+      [API OK] 48 chars
+  [22/42] economics       | strategy=combined     | order=G→T
+      [API OK] 759 chars
+      [API OK] 492 chars
+      [API OK] 515 chars
+      [API OK] 888 chars
+      [API OK] 683 chars
+      [API OK] 950 chars
+    API error (attempt 1): The read operation timed out
+      [API OK] 711 chars
+    API error (attempt 1): The read operation timed out
+      [API OK] 56 chars
+  [23/42] economics       | strategy=step_by_step | order=T→G
+      [API OK] 717 chars
+      [API OK] 535 chars
+      [API OK] 442 chars
+      [API OK] 571 chars
+      [API OK] 1059 chars
+      [API OK] 943 chars
+      [API OK] 1144 chars
+      [API OK] 43 chars
+  [24/42] economics       | strategy=targeted_attack | order=G→T
+      [API OK] 812 chars
+      [API OK] 588 chars
+      [API OK] 507 chars
+      [API OK] 629 chars
+      [API OK] 623 chars
+      [API OK] 686 chars
+      [API OK] 623 chars
+      [API OK] 29 chars
+  [25/42] law             | strategy=combined     | order=T→G
+      [API OK] 871 chars
+      [API OK] 363 chars
+      [API OK] 466 chars
+      [API OK] 521 chars
+      [API OK] 506 chars
+      [API OK] 581 chars
+      [API OK] 536 chars
+      [API OK] 45 chars
+  [26/42] law             | strategy=step_by_step | order=T→G
+      [API OK] 1080 chars
+      [API OK] 612 chars
+      [API OK] 852 chars
+      [API OK] 560 chars
+      [API OK] 949 chars
+      [API OK] 645 chars
+      [API OK] 882 chars
+    API error (attempt 1): The read operation timed out
+      [API OK] 48 chars
+  [27/42] law             | strategy=targeted_attack | order=T→G
+      [API OK] 1215 chars
+      [API OK] 439 chars
+      [API OK] 479 chars
+      [API OK] 443 chars
+      [API OK] 543 chars
+      [API OK] 548 chars
+      [API OK] 573 chars
+      [API OK] 48 chars
+  [28/42] health          | strategy=combined     | order=G→T
+      [API OK] 884 chars
+      [API OK] 487 chars
+      [API OK] 442 chars
+      [API OK] 621 chars
+      [API OK] 690 chars
+      [API OK] 727 chars
+      [API OK] 602 chars
+    API error (attempt 1): The read operation timed out
+      [API OK] 60 chars
+  [29/42] health          | strategy=step_by_step | order=G→T
+      [API OK] 947 chars
+      [API OK] 843 chars
+      [API OK] 384 chars
+      [API OK] 807 chars
+      [API OK] 598 chars
+      [API OK] 915 chars
+      [API OK] 604 chars
+      [API OK] 43 chars
+  [30/42] health          | strategy=targeted_attack | order=G→T
+      [API OK] 1310 chars
+      [API OK] 423 chars
+      [API OK] 441 chars
+      [API OK] 624 chars
+      [API OK] 498 chars
+      [API OK] 664 chars
+    API error (attempt 1): The read operation timed out
+      [API OK] 667 chars
+      [API OK] 46 chars
+  [31/42] philosophy      | strategy=combined     | order=G→T
+      [API OK] 1032 chars
+      [API OK] 464 chars
+      [API OK] 542 chars
+      [API OK] 622 chars
+      [API OK] 626 chars
+      [API OK] 527 chars
+      [API OK] 636 chars
+      [API OK] 50 chars
+  [32/42] philosophy      | strategy=step_by_step | order=G→T
+      [API OK] 874 chars
+      [API OK] 419 chars
+      [API OK] 474 chars
+      [API OK] 717 chars
+      [API OK] 662 chars
+    API error (attempt 1): The read operation timed out
+      [API OK] 854 chars
+      [API OK] 804 chars
+    API error (attempt 1): The read operation timed out
+      [API OK] 48 chars
+  [33/42] philosophy      | strategy=targeted_attack | order=G→T
+      [API OK] 1018 chars
+      [API OK] 679 chars
+      [API OK] 442 chars
+      [API OK] 864 chars
+      [API OK] 608 chars
+    API error (attempt 1): The read operation timed out
+      [API OK] 847 chars
+      [API OK] 706 chars
+    API error (attempt 1): The read operation timed out
+      [API OK] 54 chars
+  [34/42] economics       | strategy=combined     | order=G→T
+      [API OK] 980 chars
+      [API OK] 518 chars
+      [API OK] 498 chars
+    API error (attempt 1): The read operation timed out
+      [API OK] 626 chars
+      [API OK] 673 chars
+      [API OK] 628 chars
+      [API OK] 718 chars
+      [API OK] 44 chars
+  [35/42] economics       | strategy=step_by_step | order=T→G
+      [API OK] 901 chars
+      [API OK] 493 chars
+      [API OK] 657 chars
+    API error (attempt 1): The read operation timed out
+      [API OK] 568 chars
+      [API OK] 789 chars
+      [API OK] 643 chars
+      [API OK] 879 chars
+      [API OK] 45 chars
+  [36/42] economics       | strategy=targeted_attack | order=T→G
+      [API OK] 758 chars
+      [API OK] 517 chars
+      [API OK] 566 chars
+      [API OK] 515 chars
+      [API OK] 654 chars
+      [API OK] 545 chars
+      [API OK] 742 chars
+      [API OK] 55 chars
+  [37/42] psychology      | strategy=combined     | order=T→G
+      [API OK] 1048 chars
+      [API OK] 638 chars
+      [API OK] 715 chars
+      [API OK] 770 chars
+      [API OK] 774 chars
+      [API OK] 720 chars
+      [API OK] 763 chars
+      [API OK] 50 chars
+  [38/42] psychology      | strategy=step_by_step | order=T→G
+      [API OK] 925 chars
+      [API OK] 618 chars
+      [API OK] 847 chars
+      [API OK] 630 chars
+    API error (attempt 1): The read operation timed out
+      [API OK] 972 chars
+      [API OK] 670 chars
+      [API OK] 756 chars
+    API error (attempt 1): The read operation timed out
+      [API OK] 44 chars
+  [39/42] psychology      | strategy=targeted_attack | order=T→G
+      [API OK] 1171 chars
+      [API OK] 580 chars
+      [API OK] 677 chars
+      [API OK] 639 chars
+      [API OK] 740 chars
+      [API OK] 710 chars
+      [API OK] 878 chars
+      [API OK] 54 chars
+  [40/42] math            | strategy=combined     | order=T→G
+      [API OK] 836 chars
+      [API OK] 730 chars
+      [API OK] 707 chars
+      [API OK] 684 chars
+      [API OK] 777 chars
+      [API OK] 748 chars
+      [API OK] 803 chars
+      [API OK] 38 chars
+  [41/42] math            | strategy=step_by_step | order=G→T
+      [API OK] 1298 chars
+      [API OK] 435 chars
+      [API OK] 519 chars
+      [API OK] 829 chars
+      [API OK] 546 chars
+    API error (attempt 1): The read operation timed out
+      [API OK] 917 chars
+      [API OK] 689 chars
+      [API OK] 55 chars
+  [42/42] math            | strategy=targeted_attack | order=G→T
+      [API OK] 1068 chars
+      [API OK] 511 chars
+      [API OK] 593 chars
+      [API OK] 622 chars
+      [API OK] 568 chars
+      [API OK] 636 chars
+      [API OK] 704 chars
+      [API OK] 42 chars
+
+=== Phase 3: Computing Metrics ===
+
+============================================================
+EVALUATION METRICS
+============================================================
+
+Overall Flip Rate:          7.1%
+Overall Targeted Flip Rate: 4.8%
+RUP Score (combined):       0.929
+Order Effect (Δ_order):     -0.062
+
+Strategy              FR   FR_tgt       PS    ΔConf     N
+-------------------------------------------------------
+combined           7.1%    7.1%    1.00   +0.00    14
+step_by_step       7.1%    7.1%    1.00   +0.00    14
+targeted_attack    7.1%    0.0%    0.00   +0.00    14
+
+Subject               FR   FR_tgt    ΔConf     N
+---------------------------------------------
+economics          0.0%    0.0%   +0.00     9
+health             0.0%    0.0%   +0.00     3
+law               50.0%   33.3%   +0.00     6
+math               0.0%    0.0%   +0.00    12
+philosophy         0.0%    0.0%   +0.00     3
+psychology         0.0%    0.0%   +0.00     9
+  API Stats: 365 calls in 6406s (3.4 RPM)
+
+  Results saved to results_compare_2.5pro/
+    - debate_results.json  (42 debates)
+    - metrics.json
+    - example_debates.json (5 example transcripts)
