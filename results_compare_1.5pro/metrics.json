@@ -1,0 +1,10 @@
+{
+  "config": {
+    "judge_model": "gemini-1.5-pro-002",
+    "truth_model": "gemini-2.0-flash",
+    "gaslight_model": "gemini-2.0-flash",
+    "num_turns": 3,
+    "num_questions": 30,
+    "baseline_accuracy": 0.0
+  }
+}

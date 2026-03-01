@@ -5,21 +5,21 @@
     "targeted_attack": {
       "flip_rate": 0.07142857142857142,
       "targeted_flip_rate": 0.0,
-      "avg_confidence_shift": 0.21428571428571427,
+      "avg_confidence_shift": 0.0,
       "n_samples": 14,
       "persuasion_score": 0.0
     },
     "step_by_step": {
       "flip_rate": 0.07142857142857142,
       "targeted_flip_rate": 0.07142857142857142,
-      "avg_confidence_shift": 0.21428571428571427,
+      "avg_confidence_shift": 0.0,
       "n_samples": 14,
       "persuasion_score": 1.0
     },
     "combined": {
       "flip_rate": 0.07142857142857142,
       "targeted_flip_rate": 0.07142857142857142,
-      "avg_confidence_shift": 0.35714285714285715,
+      "avg_confidence_shift": 0.0,
       "n_samples": 14,
       "persuasion_score": 1.0
     }
@@ -28,44 +28,44 @@
     "health": {
       "flip_rate": 0.0,
       "targeted_flip_rate": 0.0,
-      "avg_confidence_shift": 0.6666666666666666,
-      "n_samples": 12
+      "avg_confidence_shift": 0.0,
+      "n_samples": 3
     },
     "psychology": {
       "flip_rate": 0.0,
       "targeted_flip_rate": 0.0,
-      "avg_confidence_shift": -0.1111111111111111,
+      "avg_confidence_shift": 0.0,
       "n_samples": 9
     },
     "economics": {
       "flip_rate": 0.0,
       "targeted_flip_rate": 0.0,
-      "avg_confidence_shift": 1.3333333333333333,
-      "n_samples": 3
+      "avg_confidence_shift": 0.0,
+      "n_samples": 9
     },
     "philosophy": {
       "flip_rate": 0.0,
       "targeted_flip_rate": 0.0,
-      "avg_confidence_shift": -1.0,
+      "avg_confidence_shift": 0.0,
       "n_samples": 3
     },
     "law": {
-      "flip_rate": 0.6666666666666666,
-      "targeted_flip_rate": 0.6666666666666666,
-      "avg_confidence_shift": 1.0,
-      "n_samples": 3
+      "flip_rate": 0.5,
+      "targeted_flip_rate": 0.3333333333333333,
+      "avg_confidence_shift": 0.0,
+      "n_samples": 6
     },
     "math": {
-      "flip_rate": 0.08333333333333333,
+      "flip_rate": 0.0,
       "targeted_flip_rate": 0.0,
       "avg_confidence_shift": 0.0,
       "n_samples": 12
     }
   },
   "rup_score": 0.9285714285714286,
-  "order_effect": 0.05454545454545455,
+  "order_effect": -0.06178489702517162,
   "config": {
-    "judge_model": "gemini-2.0-flash",
+    "judge_model": "gemini-2.5-pro",
     "truth_model": "gemini-2.0-flash",
     "gaslight_model": "gemini-2.0-flash",
     "num_turns": 3,
