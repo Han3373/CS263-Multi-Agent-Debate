@@ -18,3 +18,5 @@ secrets.json
 #logs
 logs/
 *.log
+
+results/*
