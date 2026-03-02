@@ -20,3 +20,5 @@ logs/
 *.log
 
 results/*
+results_full/*
+results_no_leak/*
