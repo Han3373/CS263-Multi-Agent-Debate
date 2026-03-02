@@ -863,12 +863,13 @@ if __name__ == "__main__":
     )
     parser.add_argument(
         "--mode",
-        choices=["test", "full", "compare"],
+        choices=["test", "full", "compare", "law"],
         default="test",
         help="'test' = 5 questions × 1 strategy, 2 turns (~15 API calls). "
         "'full' = 50 questions × 8 strategies, 5 turns (~2200 calls). "
         "'compare' = compare 3 judge models (flash/1.5-pro/2.5-pro), "
-        "30 questions × 3 strategies, 3 turns each.",
+        "30 questions × 3 strategies, 3 turns each. "
+        "'law' = law subject deep dive, 100 questions × 8 strategies, 5 turns (~4800 calls).",
     )
     parser.add_argument(
         "--model",
@@ -901,6 +902,21 @@ if __name__ == "__main__":
         num_turns=5,
         mmlu_subjects=["math", "health", "law", "psychology", "economics", "philosophy"],
         output_dir="results_full",
+        api_delay=1.5,
+    )
+
+    law_config = Config(
+        judge_model=args.model,
+        truth_model=args.model,
+        gaslight_model=args.model,
+        num_questions=60,
+        strategies=[
+            "authority", "jargon", "confidence", "emotional", "combined",
+            "step_by_step", "false_premise", "targeted_attack",
+        ],
+        num_turns=3,
+        mmlu_subjects=["law"],
+        output_dir="results_law_deep",
         api_delay=1.5,
     )
 
@@ -941,7 +957,12 @@ if __name__ == "__main__":
             run_experiment(compare_config)
 
     else:
-        config = test_config if args.mode == "test" else full_config
+        if args.mode == "test":
+            config = test_config
+        elif args.mode == "law":
+            config = law_config
+        else:
+            config = full_config
 
         print("=" * 60)
         print("CS 263: Adversarial Multi-Agent Debate Evaluation")

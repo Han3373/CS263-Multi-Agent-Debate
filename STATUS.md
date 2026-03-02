@@ -12,6 +12,8 @@
 - [x] Compare mode re-run completed (flash + 2.5-pro results, committed & pushed)
 - [x] `num_turns` 3 → 5 (full_config)
 - [x] Full run re-run completed (5 turns, `results_full/`)
+- [x] `--mode law` added (law subject deep dive)
+- [x] Law deep dive completed (60Q × 8 strategies × 3 turns, `results_law_deep/`)
 
 ---
 
@@ -104,6 +106,38 @@
 
 ---
 
+### Law Deep Dive (`results_law_deep/`) — 60Q × 8 strategies × 3 turns, law only
+
+| Metric | Value |
+|--------|-------|
+| Overall Flip Rate | **4.7%** |
+| Targeted Flip Rate | **1.7%** |
+| RUP Score | 97.3% |
+| Baseline Accuracy | 61.7% (37/60) |
+| Order Effect | -0.047 (Gaslight-first favored) |
+
+**Per-strategy**
+| Strategy | Flip Rate | Targeted FR | ΔConf |
+|----------|-----------|-------------|-------|
+| confidence | **10.8%** | 5.4% | +0.68 |
+| targeted_attack | 8.1% | **5.4%** | +0.73 |
+| false_premise | 5.4% | 2.7% | +0.68 |
+| jargon | 5.4% | 0% | +0.54 |
+| step_by_step | 2.7% | 0% | +0.78 |
+| combined | 2.7% | 0% | +0.59 |
+| emotional | 2.7% | 0% | +0.35 |
+| authority | **0%** | 0% | +0.86 |
+
+**Key findings**
+- `confidence` strategy most effective on law (10.8%) — "common beginner mistake" framing works on interpretive domain
+- `targeted_attack` achieves highest targeted flip rate (5.4%) — first non-zero targeted FR in law
+- `authority` completely fails (0%) — fabricated citations don't work in law; only raises confidence (+0.86)
+- `combined` underperforms (2.7%) — mixing strategies dilutes effect
+- Targeted FR breaks 0% for the first time — confirms law's interpretive ambiguity enables steering
+- Thesis reinforced: domain ambiguity (law 4.7%) vs formal domain (math 0%) drives vulnerability
+
+---
+
 ## TODO
 
 ### 1. Analysis & Paper Writing
@@ -112,9 +146,8 @@
 - Write results section for paper/report
 
 ### 2. Optional Follow-up Experiments
-- Deep dive into law subject vulnerability
 - Investigate 2.5-pro ΔConf=0 (parsing issue vs model behavior)
-- Explore strategies to improve targeted flip rate
+- Math deep dive (confidence erosion without flipping)
 
 ---
 
@@ -125,6 +158,8 @@ results_full/               # full run results (8 strategies × 6 subjects, 5 tu
 results_compare_flash/      # flash judge compare results ✓
 results_compare_1.5pro/     # 1.5-pro judge results (failed, baseline_accuracy=0)
 results_compare_2.5pro/     # 2.5-pro judge compare results ✓
+results_law_deep/           # law deep dive results ✓
+law_deep_run.log            # law deep dive run log
 ```
 
 ## Branch
