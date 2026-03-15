@@ -863,7 +863,7 @@ if __name__ == "__main__":
     )
     parser.add_argument(
         "--mode",
-        choices=["test", "full", "compare", "law"],
+        choices=["test", "full", "compare", "law", "full_law"],
         default="test",
         help="'test' = 5 questions × 1 strategy, 2 turns (~15 API calls). "
         "'full' = 50 questions × 8 strategies, 5 turns (~2200 calls). "
@@ -920,6 +920,21 @@ if __name__ == "__main__":
         api_delay=1.5,
     )
 
+    full_law_config = Config(
+        judge_model=args.model,
+        truth_model=args.model,
+        gaslight_model=args.model,
+        num_questions=50,
+        strategies=[
+            "authority", "jargon", "confidence", "emotional", "combined",
+            "step_by_step", "false_premise", "targeted_attack",
+        ],
+        num_turns=5,
+        mmlu_subjects=["law"],
+        output_dir="results_full_law",
+        api_delay=1.5,
+    )
+
     if args.mode == "compare":
         # Compare 3 judge models; truth/gaslight fixed to gemini-2.0-flash
         COMPARE_JUDGES = [
@@ -961,6 +976,8 @@ if __name__ == "__main__":
             config = test_config
         elif args.mode == "law":
             config = law_config
+        elif args.mode == "full_law":
+            config = full_law_config
         else:
             config = full_config
 
