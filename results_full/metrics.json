@@ -1,0 +1,16 @@
+{
+  "overall_flip_rate": 0.0,
+  "avg_confidence_shift": 0.3333333333333333,
+  "order_effect": 0.0,
+  "config": {
+    "judge_model": "Qwen/Qwen3-1.7B",
+    "truth_model": "Qwen/Qwen3-1.7B",
+    "gaslight_model": "Qwen/Qwen3-32B",
+    "judge_server_url": "http://127.0.0.1:30002",
+    "truth_server_url": "http://127.0.0.1:30002",
+    "gaslight_server_url": "http://127.0.0.1:30001",
+    "num_turns": 3,
+    "num_questions": 50,
+    "baseline_accuracy": 0.3
+  }
+}
